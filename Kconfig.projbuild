@@ -1,0 +1,8 @@
+# https://www.kernel.org/doc/html/latest/kbuild/kconfig-language.html
+menu "wolffshots/esp32-timer config"
+    config TIMER_LOG_TAG
+        string  "log tag for timer"
+        default "esp32-timer"
+        help
+            the tag to use when using the esp logging library
+endmenu
