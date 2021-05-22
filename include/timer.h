@@ -22,6 +22,11 @@
  * SOFTWARE.
  */
 
+/**
+ * @file timer.h
+ * @brief defininitions for wrapper component which assists in setting up timers
+ */
+
 #ifndef TIMER_H
 #define TIMER_H
 

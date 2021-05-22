@@ -24,6 +24,11 @@
  * A note on the copyright line: https://www.copyright.gov/title17/92chap4.html#408
  */
 
+/**
+ * @file timer.c
+ * @brief implementation for wrapper component which assists in setting up timers
+ */
+
 #include "timer.h"
 
 #include <stdio.h>
