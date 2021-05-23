@@ -45,10 +45,10 @@ static const char *TAG = CONFIG_TIMER_LOG_TAG;
 * @param timer a locally defined timer passed through to this function
 * @param timer_callback a callback function with the params (void *arg) which is called when the alarm triggers
 * @param periodic a boolean checking whether the timer should be set up to be reset when it is triggered
-* @param period_in_seconds the period between start and trigger
+* @param period_in_millis the period between start and trigger
 * @param timer_name a name for the timer for the sake of debugging
 */
-void general_timer_init(esp_timer_handle_t timer, void(timer_callback)(void *arg), bool periodic, int period_in_seconds, char *timer_name)
+void general_timer_init(esp_timer_handle_t timer, void(timer_callback)(void *arg), bool periodic, int period_in_millis, char *timer_name)
 {
     const esp_timer_create_args_t timer_args = {
         .callback = timer_callback,                         // function to call when timer is reached
@@ -56,11 +56,11 @@ void general_timer_init(esp_timer_handle_t timer, void(timer_callback)(void *arg
     ESP_ERROR_CHECK(esp_timer_create(&timer_args, &timer)); // create the timer but don't start it
     if (periodic)                                           // check if periodic flag
     {
-        ESP_ERROR_CHECK(esp_timer_start_periodic(timer, 1000000 * period_in_seconds)); // start the timer periodically for a given period
+        ESP_ERROR_CHECK(esp_timer_start_periodic(timer, 1000 * period_in_millis)); // start the timer periodically for a given period
     }
     else
     {
-        ESP_ERROR_CHECK(esp_timer_start_once(timer, 1000000 * period_in_seconds)); // start the timer once for a given period
+        ESP_ERROR_CHECK(esp_timer_start_once(timer, 1000 * period_in_millis)); // start the timer once for a given period
     }
     ESP_LOGI(TAG, "started timer: %s, time since boot: %lld us", timer_name, esp_timer_get_time()); // log out that the timers have started
 }
